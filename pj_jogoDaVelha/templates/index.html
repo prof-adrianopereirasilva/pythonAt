@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Jogo da Velha</h1>
+    {% if vencedor %}
+        <h2>{% if vencedor == 'Empate' %}Empate!{% else %}Jogador {{ vencedor }} venceu!{% endif %}</h2>
+        <form method="POST">
+            <button type="submit" name="reiniciar" value="1">Jogar novamente</button>
+        </form>
+    {% else %}
+        <h3>Jogador atual: {{ 'X' if jogador_atual == 'X' else 'O' }}</h3>
+        <form method="POST">
+            <div class="tabuleiro">
+                {% for i in range(9) %}
+                    <button class="casa" name="jogada" value="{{ i }}" {% if tabuleiro[i] != ' ' %} disabled {% endif %}>{{ tabuleiro[i] }}</button>
+                    {% if i % 3 == 2 %}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <!-- Botão para Resetar o jogo -->
+            <br><br>
+            <button type="submit" name="reiniciar" value="1">Resetar Jogo</button>
+        </form>
+    {% endif %}
+</body>
+</html>

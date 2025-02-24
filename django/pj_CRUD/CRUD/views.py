@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
-
+from django.urls import reverse_lazy
 from .models import CRUD
 
 #def crud_list(request):
@@ -15,3 +15,4 @@ class CRUDListView(ListView):
 class CRUDCreateView(CreateView):
     model = CRUD
     fields = ["titulo", "data_Entrega"]
+    success_url = reverse_lazy("crud_list")

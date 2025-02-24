@@ -24,6 +24,6 @@ from CRUD.views import CRUDListView, CRUDCreateView
 urlpatterns = [
     path("admin/", admin.site.urls),
  #   path("", crud_list),
-    path("", CRUDListView.as_view()),
-    path("create", CRUDCreateView.as_view()),
+    path("", CRUDListView.as_view(),name="crud_list"), 
+    path("create", CRUDCreateView.as_view(),name="crud_create"), 
 ]
